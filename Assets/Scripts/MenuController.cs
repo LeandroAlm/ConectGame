@@ -5,18 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    static int LevelToLoad;
-    
+    [SerializeField] LevelLayout[] AllLevelInGame;
+    public static LevelLayout lvlLayout;
 
-    public static int GetLevelToLoad()
+    public static LevelLayout GetLevelLayout()
     {
-        return MenuController.LevelToLoad;
+        return lvlLayout;
     }
 
     public void MenuOnButtonClickLevel(int level_id)
     {
-        MenuController.LevelToLoad = level_id;
         SceneManager.LoadScene("Game");
+        MenuController.lvlLayout = AllLevelInGame[level_id - 1];
+
         //SceneManager.UnloadScene("Menu");
     }
 }
