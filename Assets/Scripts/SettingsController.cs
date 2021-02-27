@@ -6,7 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class SettingsController : MonoBehaviour
 {
-    [SerializeField] GameObject MenuControllerGameObject;
+    [SerializeField] GameObject globalAudio;
+
+    private void Awake()
+    {
+        globalAudio = GameObject.FindGameObjectsWithTag("AudioSource")[0];
+    }
 
     public void onActicateSettings()
     {
@@ -36,14 +41,14 @@ public class SettingsController : MonoBehaviour
     {
         if(MenuController.soundTrigger == 1)
         {
-            MenuControllerGameObject.GetComponent<AudioSource>().Stop();
+            globalAudio.GetComponent<Audiocontroller>().stopBackgorundMusic();
             MenuController.soundTrigger = 0;
         }
         else
         {
-            if (!MenuControllerGameObject.GetComponent<AudioSource>().isPlaying)
+            if (!globalAudio.GetComponent<Audiocontroller>().BackgorundMusicisPlaying())
             {
-                MenuControllerGameObject.GetComponent<AudioSource>().PlayDelayed(0.5f);
+                globalAudio.GetComponent<Audiocontroller>().playBackgorundMusicWithDelay(0.5f);
             }
             MenuController.soundTrigger = 1;
         }

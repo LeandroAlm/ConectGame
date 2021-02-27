@@ -24,6 +24,16 @@ public class LineAnimationController : MonoBehaviour
     public void playLineAnimation(int CP_id, Color _glowColor)
     {
         int counter = 0;
+
+        if(animation_id > 0)
+        {
+            Debug.Log("teste");
+            for (int i = 0; i < LineNode.Count; i++)
+            {
+                LineNode[i].GetComponent<Image>().color = originalColor;
+            }
+        }
+
         LineNode = new List<GameObject>();
         
         for (int i = 0; i < SpawObj.transform.childCount; i++)

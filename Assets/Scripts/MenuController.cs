@@ -11,24 +11,14 @@ public class MenuController : MonoBehaviour
     public static int CurrentLevel; // current level behing show on Game scene
     public static int soundTrigger, VibrationTrigger;
 
-    [SerializeField] GameObject Levels, BttPref, SettingsPanel;
-    private static MenuController MenuControl; // avoid duplicate when change scene
+    [SerializeField] GameObject Levels, BttPref, SettingsPanel, globalAudio;
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-
-        if (MenuControl == null)
-        {
-            MenuControl = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        globalAudio = GameObject.FindGameObjectsWithTag("AudioSource")[0];
     }
 
-    private void Start()
+        private void Start()
     {
         SettingsPanel.SetActive(false);
 
@@ -63,9 +53,9 @@ public class MenuController : MonoBehaviour
 
         if(soundTrigger == 1)
         {
-            if(!gameObject.GetComponent<AudioSource>().isPlaying)
+            if(!globalAudio.GetComponent<Audiocontroller>().BackgorundMusicisPlaying())
             {
-                gameObject.GetComponent<AudioSource>().Play();
+                globalAudio.GetComponent<Audiocontroller>().playBackgorundMusic();
             }
         }
 

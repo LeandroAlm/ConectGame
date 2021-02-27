@@ -91,6 +91,11 @@ public class GamerController : MonoBehaviour
                 if (isEmpetyNode(gridPosition))
                 {
                     is_diagonal = false;
+                    int start_x, start_y, block_size;
+
+                    block_size = gameObject.GetComponent<LoadScene>().getBlockSize();
+                    gameObject.GetComponent<LoadScene>().gridGetfirtSlotLocation(out start_x, out start_y);
+
                     ConectPositions CP = getCPbyPosition(CP_nod);
                     if (CP != null)
                     {
@@ -101,7 +106,7 @@ public class GamerController : MonoBehaviour
 
                         Transform clone = Instantiate(CP_Pref, Vector3.zero, Quaternion.identity, SpawObj.transform).transform;
                         clone.localScale = new Vector3(2, 2, 0);
-                        clone.localPosition = new Vector3(-159 + (gridPosition.x * 79.5f), 159 - (gridPosition.y * 79.5f), 0);
+                        clone.localPosition = new Vector3(start_x + (gridPosition.x * block_size), start_y - (gridPosition.y * block_size), 0);
 
                         clone.name = CP.name + "_0";
                         clone.SetParent(SpawObj.transform.Find("Temp_paste").transform);
@@ -220,9 +225,9 @@ public class GamerController : MonoBehaviour
         CP_nod = convertGamePostionInArrayID(node);
         current_node = CP_nod;
         GameObject temp_obj = new GameObject();
-        Transform clone = Instantiate(temp_obj, Vector3.zero, Quaternion.identity).transform;
+        Transform clone = Instantiate(temp_obj, Vector3.zero, Quaternion.identity, SpawObj.transform).transform;
         clone.name = "Temp_paste";
-        clone.SetParent(SpawObj.transform);
+        Destroy(temp_obj);
     }
 
     private bool isNextNode(Vector2 node)
@@ -295,13 +300,18 @@ public class GamerController : MonoBehaviour
     {
         // Convert
         Vector2 finalVector = new Vector2(-1, -1);
+        int start_x, start_y, block_size;
+
+        block_size = gameObject.GetComponent<LoadScene>().getBlockSize();
+        gameObject.GetComponent<LoadScene>().gridGetfirtSlotLocation(out start_x, out start_y);
+
         for (int i = 0; i < curerntLevelLayout.getGridSize(); i++)
         {
             for (int j = 0; j < curerntLevelLayout.getGridSize(); j++)
             {
-                if (node.x >= (-159 + (i * 79.5f)) - colliderGap && node.x <= (-159 + (i * 79.5f)) + colliderGap)
+                if (node.x >= (start_x + (i * block_size)) - colliderGap && node.x <= (start_x + (i * block_size)) + colliderGap)
                 {
-                    if (node.y <= (159 - (j * 79.5f)) + colliderGap && node.y >= 159 - (j * 79.5f) - colliderGap)
+                    if (node.y <= (start_y - (j * block_size)) + colliderGap && node.y >= start_y - (j * block_size) - colliderGap)
                     {
                         finalVector = new Vector2(i, j);
                     }
