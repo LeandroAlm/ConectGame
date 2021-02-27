@@ -51,6 +51,10 @@ public class WinControl : MonoBehaviour
             {
                 animation_id = 0;
                 WinPanel.SetActive(true);
+                if(MenuController.soundTrigger >= 1)
+                {
+                    WinPanel.GetComponent<AudioSource>().Play();
+                }
             }
         }
     }

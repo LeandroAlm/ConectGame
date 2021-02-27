@@ -7,6 +7,7 @@ ScriptsOnlyBuild:
     - LineAnimationController
     - LoadScene
     - MenuController
+    - SettingsController
     - WinControl
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
@@ -58,6 +59,10 @@ ScriptsOnlyBuild:
     - Class: 48
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -120,6 +125,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
@@ -154,6 +163,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3724}
     - Class: 114
       Script: {instanceID: 3970}
+    - Class: 114
+      Script: {instanceID: 18862}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -427,7 +438,7 @@ ScriptsOnlyBuild:
     className: Placeholder
   - hash:
       serializedVersion: 2
-      Hash: a1ea5ba40d7a7734303097a40dc07550
+      Hash: 3cf3d38af51d5b57430a0189bc41bb05
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuController
@@ -929,8 +940,14 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro.Examples
     className: TMP_TextEventCheck
+  - hash:
+      serializedVersion: 2
+      Hash: e7a5d5ab8cf395e5ab85b5ac4565b36c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SettingsController
   platform: 13
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/Game.unity
-  playerPath: C:/Users/Leandro/Downloads/myGame.apk
+  playerPath: C:/Users/Leandro/Downloads/ConectNode.apk

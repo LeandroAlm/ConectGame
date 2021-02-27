@@ -164,9 +164,16 @@ public class GamerController : MonoBehaviour
         CP_to_Finish.setAsFinished();
         levelObjectives--;
         Objectives.GetComponent<Text>().text = "objectives left\n" + levelObjectives;
+
+        #region Finish level verify
         if (levelObjectives <= 0)
         {
+            if(MenuController.VibrationTrigger == 1)
+            {
+                Handheld.Vibrate();
+            }                
             gameObject.GetComponent<WinControl>().playDelayBeforeShow();
+
             if(MenuController.MaxlvlAvaiable+1 <= AllLevelInGame.Length)
             {
                 if(MenuController.MaxlvlAvaiable <= MenuController.CurrentLevel)
@@ -183,6 +190,7 @@ public class GamerController : MonoBehaviour
                 gameObject.GetComponent<WinControl>().MaxLvlResearchAlert();
             }
         }
+        #endregion
 
         int cp_id = getCPid(CP_to_Finish);
         gameObject.GetComponent<LineAnimationController>().playLineAnimation(cp_id, curerntLevelLayout.getAllNodes()[cp_id].getGlowColor());
