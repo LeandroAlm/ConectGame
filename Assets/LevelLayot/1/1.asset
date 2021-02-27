@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ce8280c1cceea4e9eada86c235c906, type: 3}
   m_Name: 1
   m_EditorClassIdentifier: 
-  bgColor: {r: 0.9372549, g: 0.78039217, b: 0.78039217, a: 0}
+  bgColor: {r: 0.972549, g: 0.83137256, b: 0.83137256, a: 1}
   grid_size: 5
   NodesPositions:
   - {fileID: 11400000, guid: aa16cae9a53652e46b80bfa12d5e0a4e, type: 2}

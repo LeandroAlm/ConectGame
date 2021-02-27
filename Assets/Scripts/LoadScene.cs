@@ -5,13 +5,23 @@ using UnityEngine.UI;
 
 public class LoadScene : MonoBehaviour
 {
-    [SerializeField] GameObject LevelBackgound, Objectives, CP_Pref, GameGrid, GameControlObject;
+    [SerializeField] GameObject LevelBackgound, Objectives, CP_Pref, GameControlObject, SpawObj;
     [SerializeField] Text LevelTile;
     private LevelLayout levelLayout;
 
     void Start()
     {
-        levelLayout = MenuController.GetLevelLayout();
+        LoadLevel();
+    }
+
+    public void LoadLevel()
+    {
+        foreach (Transform child in SpawObj.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+        
+        levelLayout = gameObject.GetComponent<GamerController>().getLevelById(MenuController.CurrentLevel-1);
         LevelTile.text = "LEVEL " + levelLayout.name;
 
         foreach (ConectPositions CP in levelLayout.getAllNodes())
@@ -20,13 +30,13 @@ public class LoadScene : MonoBehaviour
         }
 
         Objectives.GetComponent<Text>().text = "objectives left\n" + levelLayout.getObectivesAmount();
+        Objectives.GetComponent<Text>().font.material.mainTexture.filterMode = FilterMode.Point;
 
         Color temp_color = levelLayout.getBGColor();
-        temp_color.a = 1.0f;
         LevelBackgound.GetComponent<Image>().color = temp_color;
 
         InstanciateStarterPoints();
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     private void InstanciateStarterPoints()
@@ -40,13 +50,18 @@ public class LoadScene : MonoBehaviour
             temp_color.a = 1.0f;
             temp_obj.GetComponent<Image>().color = temp_color;
 
-            Transform clone = Instantiate(CP_Pref, new Vector3(101 + (CP.getPosition1().x * 37.5f), 387 - (CP.getPosition1().y * 37.7f), 0), Quaternion.identity).transform;
+            Transform clone = Instantiate(CP_Pref, Vector3.zero, Quaternion.identity, SpawObj.transform).transform;
+            clone.localScale = new Vector3(2, 2, 0);
             clone.name = "CP_" + counter + "_0";
-            clone.SetParent(Objectives.transform);
+            clone.SetParent(SpawObj.transform);
+            clone.localPosition = new Vector3(-159 + (CP.getPosition1().x * 79.5f), 159 - (CP.getPosition1().y * 79.5f), 0);
 
-            clone = Instantiate(CP_Pref, new Vector3(101 + (CP.getPosition2().x * 37.5f), 387 - (CP.getPosition2().y * 37.7f), 0), Quaternion.identity).transform;
+            clone = Instantiate(CP_Pref, Vector3.zero, Quaternion.identity, SpawObj.transform).transform;
+            clone.localScale = new Vector3(2, 2, 0);
             clone.name = "CP_" + counter + "_1";
-            clone.SetParent(Objectives.transform);
+            clone.SetParent(SpawObj.transform);
+            clone.localPosition = new Vector3(-159 + (CP.getPosition2().x * 79.5f), 159 - (CP.getPosition2().y * 79.5f), 0);
+            counter++;
         }
     }
 }

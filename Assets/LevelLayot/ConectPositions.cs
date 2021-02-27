@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ConenctPoint")]
 public class ConectPositions : ScriptableObject
 {
-    [SerializeField] Color NodeColor;
+    [SerializeField] Color NodeColor, glowColor;
     [SerializeField] Vector2 position_1, position_2;
     private bool is_finished = false;
 
@@ -13,6 +13,11 @@ public class ConectPositions : ScriptableObject
     {
         return NodeColor;
     }
+    public Color getGlowColor()
+    {
+        return glowColor;
+    }
+
 
     public Vector2 getPosition1()
     {
