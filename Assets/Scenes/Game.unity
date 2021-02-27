@@ -1676,7 +1676,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: You have finished all levels!
+  m_Text: You finished all levels!
 --- !u!222 &1583048364
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1724,9 +1724,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2afb5a6cf39790943abf22bbc4bd1df2, type: 2}
   - {fileID: 11400000, guid: 0f984d463f167dd41a9cb785a796cadf, type: 2}
   - {fileID: 11400000, guid: a1d0dd0a1c76cc141aabb8fd84d7064f, type: 2}
-  - {fileID: 11400000, guid: a1d0dd0a1c76cc141aabb8fd84d7064f, type: 2}
   - {fileID: 11400000, guid: 74d402b93c353f84db4b500a95e84f5f, type: 2}
-  colliderGap: 34
+  colliderGap: 37
   CP_Pref: {fileID: 7542803286016878250, guid: 235219c8f4ce95441b8c2727b377f17b, type: 3}
   Objectives: {fileID: 684585426}
   SpawObj: {fileID: 1983738375}

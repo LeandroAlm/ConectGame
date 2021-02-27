@@ -13,6 +13,7 @@ public class LineAnimationController : MonoBehaviour
 
     private void Start()
     {
+        LineNode = new List<GameObject>();
         animation_id = 0;
     }
 
@@ -27,15 +28,15 @@ public class LineAnimationController : MonoBehaviour
 
         if(animation_id > 0)
         {
-            Debug.Log("teste");
             for (int i = 0; i < LineNode.Count; i++)
             {
                 LineNode[i].GetComponent<Image>().color = originalColor;
             }
         }
 
-        LineNode = new List<GameObject>();
-        
+        ForcePlayAnimation();
+
+
         for (int i = 0; i < SpawObj.transform.childCount; i++)
         {
             if(SpawObj.transform.GetChild(i).name.Contains("CP_" + CP_id))
@@ -55,12 +56,16 @@ public class LineAnimationController : MonoBehaviour
             LineNode[i].GetComponent<Image>().color = glowColor;
         }
 
-
-        blink_count = 0;
-        animation_tick = 0.0f;
         animation_id = 1;
     }
 
+    public void ForcePlayAnimation()
+    {
+        LineNode.Clear();
+        blink_count = 0;
+        animation_tick = 0.0f;
+        animation_id = 0;
+    }
 
     private void AnimationUpdate()
     {

@@ -369,6 +369,7 @@ public class GamerController : MonoBehaviour
 
     public void PlayNextLvl()
     {
+        gameObject.GetComponent<LineAnimationController>().ForcePlayAnimation();
         MenuController.setNextLvlasCurrentLvl();
         ReloadLevel();
     }
